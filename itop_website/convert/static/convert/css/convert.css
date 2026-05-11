@@ -1,0 +1,141 @@
+:root {
+    --primary-green: #2D4336; /* Le vert de ton bouton et footer */
+    --text-dark: #1a1a1a;
+    --text-muted: #555;
+    --bg-white: #ffffff;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-dark);
+}
+
+/* Header */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    border-bottom: 1px solid #eee;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: -1px;
+}
+
+.menu-icon span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background: black;
+    margin: 5px 0;
+}
+
+/* Main Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 10%;
+    min-height: 70vh;
+}
+
+.converter-section {
+    flex: 1;
+    text-align: center;
+}
+
+h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+}
+
+.formats {
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+/* Upload Area */
+.upload-container {
+    margin-top: 20px;
+}
+
+.btn-select {
+    background-color: var(--primary-green);
+    color: white;
+    padding: 18px 40px;
+    border-radius: 50px; /* Bordures très arrondies comme sur ton image */
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-select:hover {
+    transform: scale(1.05);
+}
+
+.drop-text {
+    margin-top: 15px;
+    font-size: 20px;
+    color: #333;
+}
+
+/* Image Decoration */
+.image-decor img {
+    max-width: 500px;
+    height: auto;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--primary-green);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 10%;
+    margin-top: 50px;
+}
+
+.footer-logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.footer-left {
+    max-width: 400px;
+}
+
+.footer-right {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.footer-right a {
+    color: white;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+    }
+    .image-decor {
+        display: none; /* Cache l'image sur petit écran pour laisser place au convertisseur */
+    }
+}

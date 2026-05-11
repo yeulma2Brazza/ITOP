@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITOP - Convertisseur Image en PDF</title>
+    <link rel="stylesheet" href="{% static 'convert/css/convert.css' %}">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">ITOP</div>
+        <div class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <main class="hero">
+        <section class="converter-section">
+            <h1>Convertir des images en pdf</h1>
+            <p class="subtitle">Convertissez des 
+                <span class="formats">PNG, GIF, TIF, PSD, SVG, WEBP, HEIC</span> au format PDF.
+            </p>
+
+            <div class="upload-container" id="drop-zone">
+                <input type="file" id="file-input" name="images" multiple hidden>
+                
+                <button class="btn-select" id="select-trigger">Sélectionner des images</button>
+                
+                <button class="btn-select" id="download-btn" style="display:none; background-color: #d4a373;">
+                    Télécharger le PDF
+                </button>
+                
+                <p class="drop-text" id="status-text">ou déposer des images ici</p>
+                
+                <div id="progress-container" style="display:none; width: 100%; margin-top: 20px;">
+                    <progress id="progress-bar" value="0" max="100" style="width:100%; height: 20px;"></progress>
+                    <p id="progress-percent" style="font-weight: bold; color: var(--primary-green);">0%</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="image-decor">
+            <img src="{% static 'convert/images/femme-souriante.jpg' %}" alt="Décoration">
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-left">
+            <div class="footer-logo">ITOP</div>
+            <p>La conversion d'image n'a jamais été aussi simple. C'est gratuit et ça le sera toujours.</p>
+        </div>
+        <div class="footer-right">
+            <a href="#">Politiques de confidentialité</a>
+            <p>© 2026 Afro Tech. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const selectTrigger = document.getElementById('select-trigger');
+        const downloadBtn = document.getElementById('download-btn');
+        const progressContainer = document.getElementById('progress-container');
+        const progressBar = document.getElementById('progress-bar');
+        const progressPercent = document.getElementById('progress-percent');
+        const statusText = document.getElementById('status-text');
+
+        // Déclencher l'explorateur de fichiers
+        selectTrigger.onclick = () => fileInput.click();
+
+        // Gestion du choix de fichiers
+        fileInput.onchange = (e) => {
+            if (e.target.files.length > 0) handleUpload(e.target.files);
+        };
+
+        // Gestion du Drag & Drop
+        dropZone.ondragover = (e) => { e.preventDefault(); dropZone.style.border = "2px dashed #2D4336"; };
+        dropZone.ondragleave = () => { dropZone.style.border = "none"; };
+        dropZone.ondrop = (e) => {
+            e.preventDefault();
+            dropZone.style.border = "none";
+            if (e.dataTransfer.files.length > 0) handleUpload(e.dataTransfer.files);
+        };
+
+        function handleUpload(files) {
+            const formData = new FormData();
+            for (let file of files) {
+                formData.append('images', file);
+            }
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '', true);
+            // On récupère le token CSRF injecté par Django
+            xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+            xhr.responseType = 'blob'; // Indispensable pour recevoir le PDF
+
+            // Mise à jour visuelle : On cache le bouton de sélection, on montre la barre
+            selectTrigger.style.display = 'none';
+            downloadBtn.style.display = 'none';
+            progressContainer.style.display = 'block';
+            statusText.innerText = "Envoi des images...";
+
+            // Suivi de la progression de l'envoi
+            xhr.upload.onprogress = (e) => {
+                if (e.lengthComputable) {
+                    const percent = Math.round((e.loaded / e.total) * 100);
+                    progressBar.value = percent;
+                    progressPercent.innerText = percent + "%";
+                    if(percent === 100) statusText.innerText = "Conversion en PDF par le serveur...";
+                }
+            };
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    const blob = new Blob([xhr.response], { type: 'application/pdf' });
+                    const url = window.URL.createObjectURL(blob);
+                    
+                    // On masque la barre et on montre le bouton télécharger
+                    progressContainer.style.display = 'none';
+                    downloadBtn.style.display = 'inline-block';
+                    statusText.innerText = "Conversion terminée !";
+
+                    downloadBtn.onclick = () => {
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = "ITOP_Convert.pdf";
+                        a.click();
+                    };
+                } else {
+                    alert("Erreur lors de la conversion.");
+                    selectTrigger.style.display = 'inline-block';
+                    progressContainer.style.display = 'none';
+                    statusText.innerText = "ou déposer des images ici";
+                }
+            };
+
+            xhr.send(formData);
+        }
+    });
+    </script>
+</body>
+</html>
