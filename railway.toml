@@ -1,5 +1,6 @@
 [build]
 builder = "nixpacks"
+buildCommand = "pip install -r requirements.txt && python manage.py collectstatic --no-input && python manage.py migrate --no-input"
 
 [deploy]
 startCommand = "gunicorn itop_website.wsgi --workers 2 --bind 0.0.0.0:$PORT"

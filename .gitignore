@@ -1,0 +1,24 @@
+# Environnement virtuel Python
+env/
+venv/
+.venv/
+
+# Fichiers sensibles
+.env
+*.env
+
+# Django
+itop_website/db.sqlite3
+itop_website/staticfiles/
+itop_website/__pycache__/
+itop_website/**/__pycache__/
+*.pyc
+*.pyo
+
+# Node / React Native
+itop-mobile/node_modules/
+itop-mobile/.expo/
+
+# Système
+.DS_Store
+Thumbs.db
