@@ -1,15 +1,19 @@
 import io
+import json
 from django.shortcuts import render
-from django.http import HttpResponse, FileResponse
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from PIL import Image
 from pillow_heif import register_heif_opener
 from psd_tools import PSDImage
 from svglib.svglib import svg2rlg
 from reportlab.graphics import renderPM
+from .models import ConversionStats
 
 # Indispensable pour HEIC
 register_heif_opener()
 
+@csrf_exempt
 def convert_to_pdf_view(request):
     if request.method == 'POST':
         # 'images' doit correspondre au nom dans formData.append('images', file)
@@ -52,7 +56,9 @@ def convert_to_pdf_view(request):
                 )
                 
                 pdf_output.seek(0)
-                
+
+                ConversionStats.increment(len(image_list))
+
                 return HttpResponse(pdf_output.read(), content_type='application/pdf')
 
         except Exception as e:
@@ -60,4 +66,13 @@ def convert_to_pdf_view(request):
             return HttpResponse(f"Erreur technique: {e}", status=500)
 
 
-    return render(request, 'convert/convert.html')
+    count = ConversionStats.get_count()
+    return render(request, 'convert/convert.html', {'files_converted': count})
+
+
+def privacy_view(request):
+    return render(request, 'convert/privacy.html')
+
+
+def stats_view(request):
+    return JsonResponse({'files_converted': ConversionStats.get_count()})

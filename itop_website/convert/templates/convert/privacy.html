@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politique de confidentialité — ITOP</title>
+    <link rel="stylesheet" href="{% static 'convert/css/convert.css' %}">
+</head>
+<body>
+
+<!-- ─── NAVBAR ─────────────────────────────────────────────── -->
+<header class="navbar">
+    <a href="{% url 'convert' %}" style="text-decoration:none;">
+        <div class="logo">ITOP</div>
+    </a>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="{% url 'convert' %}#features">Fonctionnalités</a></li>
+            <li><a href="{% url 'convert' %}#steps">Comment ça marche</a></li>
+            <li><a href="{% url 'privacy' %}">Confidentialité</a></li>
+        </ul>
+    </nav>
+    <span class="nav-badge">100 % Gratuit</span>
+</header>
+
+<!-- ─── CONTENU ──────────────────────────────────────────────── -->
+<article class="policy-page">
+
+    <h1>Politique de confidentialité</h1>
+    <p class="policy-date">Dernière mise à jour : 5 juin 2026</p>
+
+    <div class="policy-highlight">
+        <p>✦ Résumé essentiel — Vos images ne sont jamais stockées. ITOP ne collecte aucune donnée personnelle. Le service est 100 % gratuit, sans publicité, sans traçage.</p>
+    </div>
+
+    <h2>1. Qui sommes-nous ?</h2>
+    <p>
+        ITOP est un service de conversion d'images en PDF développé par <strong>Afro Tech</strong>.
+        Le site est accessible à l'adresse de ce domaine. Pour toute question relative à cette politique,
+        contactez-nous à l'adresse : <strong>yeulmastride@gmail.com</strong>.
+    </p>
+
+    <h2>2. Quelles données traitons-nous ?</h2>
+    <p>ITOP ne collecte <strong>aucune donnée personnelle</strong> vous identifiant. Voici ce qui se passe techniquement :</p>
+    <ul>
+        <li><strong>Vos images</strong> sont transmises temporairement à notre serveur le temps de la conversion.</li>
+        <li>Les images sont traitées <strong>en mémoire vive</strong> uniquement et ne sont jamais écrites sur un disque.</li>
+        <li>Les fichiers sont <strong>immédiatement supprimés</strong> dès que le PDF est généré et renvoyé.</li>
+        <li>Nous ne conservons <strong>aucune copie</strong> de vos fichiers après la conversion.</li>
+    </ul>
+
+    <h2>3. Cookies et traceurs</h2>
+    <p>
+        ITOP n'utilise <strong>aucun cookie de traçage</strong>, aucune technologie de suivi publicitaire,
+        et aucun outil d'analyse comportementale.
+    </p>
+    <p>
+        Un cookie de session Django (<code>csrftoken</code>) est utilisé uniquement pour sécuriser les formulaires
+        contre les attaques CSRF. Il ne contient aucune information personnelle et n'est pas partagé avec des tiers.
+    </p>
+
+    <h2>4. Journaux serveur</h2>
+    <p>
+        Comme tout serveur web, notre infrastructure enregistre automatiquement des journaux techniques contenant :
+        l'adresse IP de la requête, la date et l'heure, le type de navigateur et le code de réponse HTTP.
+        Ces journaux sont conservés <strong>au maximum 30 jours</strong> à des fins de diagnostic et de sécurité,
+        puis supprimés automatiquement. Ils ne sont jamais utilisés à des fins commerciales.
+    </p>
+
+    <h2>5. Partage avec des tiers</h2>
+    <p>
+        Nous ne vendons, ne louons et ne partageons aucune donnée avec des tiers.
+        ITOP ne contient aucune publicité et n'est affilié à aucun réseau publicitaire.
+    </p>
+
+    <h2>6. Sécurité</h2>
+    <p>
+        Les échanges entre votre navigateur et notre serveur sont sécurisés. Vos images transitent
+        directement vers notre serveur de conversion sans passer par des services tiers.
+    </p>
+
+    <h2>7. Mineurs</h2>
+    <p>
+        ITOP est accessible à tous. Aucune donnée personnelle n'étant collectée, l'utilisation par des mineurs
+        ne présente pas de risque particulier au regard de la protection des données.
+    </p>
+
+    <h2>8. Vos droits (RGPD)</h2>
+    <p>
+        Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants :
+        accès, rectification, effacement, opposition et portabilité de vos données.
+    </p>
+    <p>
+        Étant donné qu'ITOP ne stocke aucune donnée personnelle, il n'y a techniquement rien à accéder,
+        rectifier ou supprimer. Si vous avez une question ou une demande, contactez-nous à :
+        <strong>yeulmastride@gmail.com</strong>.
+    </p>
+
+    <h2>9. Modifications de cette politique</h2>
+    <p>
+        Nous nous réservons le droit de mettre à jour cette politique. La date de dernière mise à jour
+        est indiquée en haut de cette page. Nous vous encourageons à la consulter périodiquement.
+    </p>
+
+    <div class="policy-highlight" style="margin-top: 48px;">
+        <p>🔙 <a href="{% url 'convert' %}" style="color: var(--primary); text-decoration: underline;">Retour au convertisseur</a></p>
+    </div>
+
+</article>
+
+<!-- ─── FOOTER ───────────────────────────────────────────────── -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-left">
+            <div class="footer-logo">ITOP</div>
+            <p>La conversion d'image n'a jamais été aussi simple. Gratuit aujourd'hui, gratuit demain, gratuit pour toujours.</p>
+        </div>
+        <nav class="footer-links">
+            <a href="{% url 'privacy' %}">Politique de confidentialité</a>
+            <a href="{% url 'convert' %}#features">Fonctionnalités</a>
+            <a href="{% url 'convert' %}#steps">Comment ça marche</a>
+        </nav>
+    </div>
+    <div class="footer-bottom">
+        <span>© 2026 Afro Tech. Tous droits réservés.</span>
+        <span>Fait avec ❤ — 100 % gratuit</span>
+    </div>
+</footer>
+
+</body>
+</html>

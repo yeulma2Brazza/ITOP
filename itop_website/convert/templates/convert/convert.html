@@ -4,144 +4,272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ITOP - Convertisseur Image en PDF</title>
+    <title>ITOP — Convertisseur Image en PDF gratuit</title>
+    <meta name="description" content="Convertissez vos images PNG, JPG, HEIC, PSD, SVG en PDF gratuitement. Rapide, simple et 100% gratuit pour toujours.">
     <link rel="stylesheet" href="{% static 'convert/css/convert.css' %}">
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="logo">ITOP</div>
-        <div class="menu-icon">
-            <span></span>
-            <span></span>
-            <span></span>
+<!-- ─── NAVBAR ─────────────────────────────────────────────── -->
+<header class="navbar">
+    <div class="logo">ITOP</div>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#features">Fonctionnalités</a></li>
+            <li><a href="#steps">Comment ça marche</a></li>
+            <li><a href="{% url 'privacy' %}">Confidentialité</a></li>
+        </ul>
+    </nav>
+    <span class="nav-badge">100 % Gratuit</span>
+</header>
+
+<!-- ─── HERO ────────────────────────────────────────────────── -->
+<main class="hero">
+    <section class="converter-section">
+
+        <div class="free-badge">100 % Gratuit &mdash; Pour toujours</div>
+
+        <h1>Convertissez vos<br><span>images en PDF</span></h1>
+
+        <div class="counter-bar">
+            <span class="counter-icon">📊</span>
+            <span id="counter-value" data-target="{{ files_converted }}">{{ files_converted }}</span>
+            <span class="counter-label">fichiers déjà convertis</span>
         </div>
-    </header>
+        <p class="subtitle">
+            Supportez les formats
+            <span class="formats-highlight">PNG, JPG, GIF, TIF, PSD, SVG, WEBP, HEIC</span>
+            — sans inscription, sans limite, sans aucun frais.
+        </p>
 
-    <main class="hero">
-        <section class="converter-section">
-            <h1>Convertir des images en pdf</h1>
-            <p class="subtitle">Convertissez des 
-                <span class="formats">PNG, GIF, TIF, PSD, SVG, WEBP, HEIC</span> au format PDF.
-            </p>
+        <div class="upload-container" id="drop-zone">
+            <input type="file" id="file-input" name="images" multiple hidden accept="image/*,.psd,.svg,.heic">
 
-            <div class="upload-container" id="drop-zone">
-                <input type="file" id="file-input" name="images" multiple hidden>
-                
-                <button class="btn-select" id="select-trigger">Sélectionner des images</button>
-                
-                <button class="btn-select" id="download-btn" style="display:none; background-color: #d4a373;">
-                    Télécharger le PDF
-                </button>
-                
-                <p class="drop-text" id="status-text">ou déposer des images ici</p>
-                
-                <div id="progress-container" style="display:none; width: 100%; margin-top: 20px;">
-                    <progress id="progress-bar" value="0" max="100" style="width:100%; height: 20px;"></progress>
-                    <p id="progress-percent" style="font-weight: bold; color: var(--primary-green);">0%</p>
+            <div class="upload-icon">🖼️</div>
+            <p class="upload-title">Glissez vos images ici</p>
+            <p class="drop-text" id="status-text">ou cliquez pour sélectionner depuis votre appareil</p>
+
+            <button class="btn-select" id="select-trigger">Sélectionner des images</button>
+
+            <button class="btn-select" id="download-btn" style="display:none;">
+                ⬇ Télécharger le PDF
+            </button>
+
+            <div id="progress-container" style="display:none;">
+                <div class="progress-wrapper">
+                    <div class="progress-track">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <p class="progress-label" id="progress-percent">0 %</p>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section class="image-decor">
-            <img src="{% static 'convert/images/femme-souriante.jpg' %}" alt="Décoration">
-        </section>
-    </main>
+    </section>
 
-    <footer class="footer">
+    <section class="image-decor">
+        <img src="{% static 'convert/images/femme-souriante.jpg' %}" alt="Illustration ITOP">
+    </section>
+</main>
+
+<!-- ─── FREE BANNER ─────────────────────────────────────────── -->
+<section class="free-banner">
+    <h2>Combien ça coûte ?</h2>
+    <p>Aucun abonnement, aucun compte, aucune limite cachée.</p>
+    <div class="price-tag">0 €</div>
+    <p class="price-caption">Maintenant &amp; pour toujours</p>
+</section>
+
+<!-- ─── FEATURES ────────────────────────────────────────────── -->
+<section class="features" id="features">
+    <p class="section-label">Pourquoi ITOP ?</p>
+    <h2 class="section-title">Tout ce dont vous avez besoin</h2>
+
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">💚</div>
+            <h3>100 % Gratuit pour toujours</h3>
+            <p>Aucun abonnement, aucun compte requis. ITOP est et restera gratuit. Pas de version premium, pas de piège.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🖼️</div>
+            <h3>7 formats d'images supportés</h3>
+            <p>PNG, JPG, GIF, TIF, PSD, SVG, WEBP et HEIC — les formats professionnels et courants sont tous pris en charge.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Conversion ultra rapide</h3>
+            <p>Téléversez plusieurs images en même temps. Le PDF est généré côté serveur en quelques secondes.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>Vos données restent privées</h3>
+            <p>Vos images ne sont jamais stockées. Elles sont converties en mémoire puis immédiatement supprimées.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">📱</div>
+            <h3>Disponible sur mobile</h3>
+            <p>L'application ITOP est disponible sur Android. Convertissez vos images directement depuis votre téléphone.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">📄</div>
+            <h3>Multi-pages en un clic</h3>
+            <p>Sélectionnez plusieurs images à la fois pour générer un PDF multi-pages en une seule conversion.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ─── STEPS ────────────────────────────────────────────────── -->
+<section class="steps" id="steps">
+    <p class="section-label">Simple comme bonjour</p>
+    <h2 class="section-title">3 étapes, c'est tout</h2>
+
+    <div class="steps-grid">
+        <div class="step">
+            <div class="step-number">1</div>
+            <h3>Sélectionnez vos images</h3>
+            <p>Glissez-déposez vos images dans la zone de dépôt ou cliquez pour les choisir depuis votre appareil.</p>
+        </div>
+        <div class="step">
+            <div class="step-number">2</div>
+            <h3>Conversion automatique</h3>
+            <p>Notre serveur convertit instantanément vos images en un seul fichier PDF propre et optimisé.</p>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <h3>Téléchargez votre PDF</h3>
+            <p>Cliquez sur le bouton de téléchargement. Votre fichier est prêt — gratuit, sans filigrane.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ─── FOOTER ───────────────────────────────────────────────── -->
+<footer class="footer">
+    <div class="footer-top">
         <div class="footer-left">
             <div class="footer-logo">ITOP</div>
-            <p>La conversion d'image n'a jamais été aussi simple. C'est gratuit et ça le sera toujours.</p>
+            <p>La conversion d'image n'a jamais été aussi simple. Gratuit aujourd'hui, gratuit demain, gratuit pour toujours.</p>
         </div>
-        <div class="footer-right">
-            <a href="#">Politiques de confidentialité</a>
-            <p>© 2026 Afro Tech. Tous droits réservés.</p>
-        </div>
-    </footer>
+        <nav class="footer-links">
+            <a href="{% url 'privacy' %}">Politique de confidentialité</a>
+            <a href="#features">Fonctionnalités</a>
+            <a href="#steps">Comment ça marche</a>
+        </nav>
+    </div>
+    <div class="footer-bottom">
+        <span>© 2026 Afro Tech. Tous droits réservés.</span>
+        <span>Fait avec ❤ — 100 % gratuit</span>
+    </div>
+</footer>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const dropZone = document.getElementById('drop-zone');
-        const fileInput = document.getElementById('file-input');
-        const selectTrigger = document.getElementById('select-trigger');
-        const downloadBtn = document.getElementById('download-btn');
-        const progressContainer = document.getElementById('progress-container');
-        const progressBar = document.getElementById('progress-bar');
-        const progressPercent = document.getElementById('progress-percent');
-        const statusText = document.getElementById('status-text');
+<script>
+// Anime un nombre de start jusqu'à end en duration ms
+function animateCounter(el, start, end, duration) {
+    if (end === 0) return;
+    const range = end - start;
+    const startTime = performance.now();
+    function step(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+        el.textContent = Math.round(start + range * eased).toLocaleString('fr-FR');
+        if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+}
 
-        // Déclencher l'explorateur de fichiers
-        selectTrigger.onclick = () => fileInput.click();
+document.addEventListener('DOMContentLoaded', function () {
+    // Animation initiale du compteur au chargement
+    const counterEl = document.getElementById('counter-value');
+    const target = parseInt(counterEl.dataset.target, 10) || 0;
+    animateCounter(counterEl, 0, target, 1800);
+    const dropZone       = document.getElementById('drop-zone');
+    const fileInput      = document.getElementById('file-input');
+    const selectTrigger  = document.getElementById('select-trigger');
+    const downloadBtn    = document.getElementById('download-btn');
+    const progressCont   = document.getElementById('progress-container');
+    const progressFill   = document.getElementById('progress-fill');
+    const progressPct    = document.getElementById('progress-percent');
+    const statusText     = document.getElementById('status-text');
 
-        // Gestion du choix de fichiers
-        fileInput.onchange = (e) => {
-            if (e.target.files.length > 0) handleUpload(e.target.files);
-        };
+    selectTrigger.onclick = () => fileInput.click();
+    fileInput.onchange    = (e) => { if (e.target.files.length) handleUpload(e.target.files); };
 
-        // Gestion du Drag & Drop
-        dropZone.ondragover = (e) => { e.preventDefault(); dropZone.style.border = "2px dashed #2D4336"; };
-        dropZone.ondragleave = () => { dropZone.style.border = "none"; };
-        dropZone.ondrop = (e) => {
-            e.preventDefault();
-            dropZone.style.border = "none";
-            if (e.dataTransfer.files.length > 0) handleUpload(e.dataTransfer.files);
-        };
+    dropZone.ondragover  = (e) => { e.preventDefault(); dropZone.classList.add('drag-over'); };
+    dropZone.ondragleave = ()  => dropZone.classList.remove('drag-over');
+    dropZone.ondrop      = (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('drag-over');
+        if (e.dataTransfer.files.length) handleUpload(e.dataTransfer.files);
+    };
 
-        function handleUpload(files) {
-            const formData = new FormData();
-            for (let file of files) {
-                formData.append('images', file);
+    function setProgress(pct, label) {
+        progressFill.style.width = pct + '%';
+        progressPct.textContent  = label || pct + ' %';
+    }
+
+    function handleUpload(files) {
+        const formData = new FormData();
+        for (const f of files) formData.append('images', f);
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '', true);
+        xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
+        xhr.responseType = 'blob';
+
+        // UI → loading state
+        selectTrigger.style.display = 'none';
+        downloadBtn.style.display   = 'none';
+        progressCont.style.display  = 'block';
+        statusText.textContent      = 'Envoi des images…';
+        setProgress(0);
+
+        xhr.upload.onprogress = (e) => {
+            if (e.lengthComputable) {
+                const pct = Math.round(e.loaded / e.total * 100);
+                setProgress(pct);
+                if (pct === 100) statusText.textContent = 'Conversion en cours…';
             }
+        };
 
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', '', true);
-            // On récupère le token CSRF injecté par Django
-            xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
-            xhr.responseType = 'blob'; // Indispensable pour recevoir le PDF
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                const url = window.URL.createObjectURL(
+                    new Blob([xhr.response], { type: 'application/pdf' })
+                );
+                progressCont.style.display = 'none';
+                downloadBtn.style.display  = 'inline-block';
+                statusText.innerHTML = '<span class="status-success">✓ Conversion réussie !</span>';
 
-            // Mise à jour visuelle : On cache le bouton de sélection, on montre la barre
-            selectTrigger.style.display = 'none';
-            downloadBtn.style.display = 'none';
-            progressContainer.style.display = 'block';
-            statusText.innerText = "Envoi des images...";
+                // Mise à jour du compteur après conversion
+                fetch('/stats/')
+                    .then(r => r.json())
+                    .then(data => {
+                        const prev = parseInt(counterEl.dataset.target, 10) || 0;
+                        counterEl.dataset.target = data.files_converted;
+                        animateCounter(counterEl, prev, data.files_converted, 800);
+                    })
+                    .catch(() => {});
 
-            // Suivi de la progression de l'envoi
-            xhr.upload.onprogress = (e) => {
-                if (e.lengthComputable) {
-                    const percent = Math.round((e.loaded / e.total) * 100);
-                    progressBar.value = percent;
-                    progressPercent.innerText = percent + "%";
-                    if(percent === 100) statusText.innerText = "Conversion en PDF par le serveur...";
-                }
-            };
+                downloadBtn.onclick = () => {
+                    const a = document.createElement('a');
+                    a.href = url; a.download = 'ITOP_Convert.pdf'; a.click();
+                };
+            } else {
+                progressCont.style.display  = 'none';
+                selectTrigger.style.display = 'inline-block';
+                statusText.textContent      = 'Une erreur est survenue. Réessayez.';
+            }
+        };
 
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    const blob = new Blob([xhr.response], { type: 'application/pdf' });
-                    const url = window.URL.createObjectURL(blob);
-                    
-                    // On masque la barre et on montre le bouton télécharger
-                    progressContainer.style.display = 'none';
-                    downloadBtn.style.display = 'inline-block';
-                    statusText.innerText = "Conversion terminée !";
+        xhr.onerror = function () {
+            progressCont.style.display  = 'none';
+            selectTrigger.style.display = 'inline-block';
+            statusText.textContent      = 'Erreur de connexion. Vérifiez votre réseau.';
+        };
 
-                    downloadBtn.onclick = () => {
-                        const a = document.createElement('a');
-                        a.href = url;
-                        a.download = "ITOP_Convert.pdf";
-                        a.click();
-                    };
-                } else {
-                    alert("Erreur lors de la conversion.");
-                    selectTrigger.style.display = 'inline-block';
-                    progressContainer.style.display = 'none';
-                    statusText.innerText = "ou déposer des images ici";
-                }
-            };
-
-            xhr.send(formData);
-        }
-    });
-    </script>
+        xhr.send(formData);
+    }
+});
+</script>
 </body>
 </html>
