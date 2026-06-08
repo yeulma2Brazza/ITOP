@@ -29,6 +29,7 @@ import {
 import * as ImagePicker from 'expo-image-picker';
 import * as FileSystem from 'expo-file-system/legacy';
 import * as Sharing from 'expo-sharing';
+import * as Clipboard from 'expo-clipboard';
 import { CONVERT_ENDPOINT } from './config';
 
 // ─── Dimensions ────────────────────────────────────────────────────────────────
@@ -409,17 +410,13 @@ const InnovativePdfWorkspace: React.FC = () => {
     });
   }, [pdfUri]);
 
-  /**
-   * Simule la création d'un lien de collaboration partageable.
-   * Dans une version production, ce lien serait généré par le backend
-   * et associé à un espace de travail persistant côté serveur.
-   */
-  const inviteCollaborator = useCallback(() => {
-    const randomId  = Math.random().toString(36).substring(2, 10);
-    const shareLink = `https://formation.mayscorp.net/workspace/${randomId}`;
+  /** Copie le lien de l'application dans le presse-papier pour le partager. */
+  const inviteCollaborator = useCallback(async () => {
+    const shareLink = 'https://itop.mayscorp.net';
+    await Clipboard.setStringAsync(shareLink);
     Alert.alert(
-      '👥 Invitation créée',
-      `Lien copié dans votre presse-papiers :\n\n${shareLink}\n\nVotre collaborateur pourra visualiser et annoter ce document.`,
+      '👥 Lien copié !',
+      `Le lien de l'application a été copié dans votre presse-papier :\n\n${shareLink}\n\nPartagez-le pour inviter quelqu'un à utiliser ITOP.`,
       [{ text: 'Parfait !' }]
     );
   }, []);
@@ -514,7 +511,7 @@ const InnovativePdfWorkspace: React.FC = () => {
 
         {/* Pied de page */}
         <Text style={styles.footerNote}>
-          Propulsé par ITOP · formation.mayscorp.net
+          Propulsé par ITOP · itop.mayscorp.net
         </Text>
       </View>
     );
