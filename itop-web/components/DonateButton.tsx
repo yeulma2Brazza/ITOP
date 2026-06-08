@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 export default function DonateButton({ variant = 'default' }: { variant?: 'default' | 'compact' }) {
   if (variant === 'compact') {
     return (
@@ -5,17 +7,14 @@ export default function DonateButton({ variant = 'default' }: { variant?: 'defau
         <p className="text-gray-400 text-xs text-center">Vous aimez ITOP ? Soutenez-nous ♥</p>
         <form action="https://www.paypal.com/donate" method="post" target="_top">
           <input type="hidden" name="hosted_button_id" value="4PFJECDJET9KG" />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <input
             type="image"
             src="https://www.paypalobjects.com/fr_CA/i/btn/btn_donate_SM.gif"
-            border={0 as unknown as string}
             name="submit"
             title="PayPal - The safer, easier way to pay online!"
             alt="Faire un don avec PayPal"
             className="cursor-pointer hover:opacity-80 transition-opacity"
           />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             alt=""
             src="https://www.paypal.com/fr_CA/i/scr/pixel.gif"
@@ -44,17 +43,14 @@ export default function DonateButton({ variant = 'default' }: { variant?: 'defau
         className="flex justify-center"
       >
         <input type="hidden" name="hosted_button_id" value="4PFJECDJET9KG" />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <input
           type="image"
           src="https://www.paypalobjects.com/fr_CA/i/btn/btn_donate_LG.gif"
-          border={0 as unknown as string}
           name="submit"
           title="PayPal - The safer, easier way to pay online!"
           alt="Faire un don avec PayPal"
-          className="cursor-pointer hover:opacity-80 transition-opacity hover:scale-105 transition-transform duration-150"
+          className="cursor-pointer hover:opacity-80 hover:scale-105 transition-all duration-150"
         />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           alt=""
           src="https://www.paypal.com/fr_CA/i/scr/pixel.gif"
