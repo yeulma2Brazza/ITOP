@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useCallback, useRef } from 'react'
+import DonateButton from './DonateButton'
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? 'https://formation.mayscorp.net'
 
@@ -117,6 +118,10 @@ export default function UploadZone({ onConverted }: UploadZoneProps) {
               Nouveau fichier
             </button>
           </div>
+
+          {/* Don après conversion réussie */}
+          <DonateButton />
+
         </div>
       </div>
     )

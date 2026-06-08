@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import DonateButton from './DonateButton'
 
 export default function Footer() {
   return (
@@ -24,6 +25,9 @@ export default function Footer() {
               Convertisseur d&apos;images en PDF gratuit. Simple, rapide, privé.
             </p>
           </div>
+
+          {/* Don */}
+          <DonateButton variant="compact" />
 
           {/* Badge gratuit */}
           <div className="flex flex-col items-center gap-3">
