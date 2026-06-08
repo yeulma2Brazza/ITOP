@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "itop-mobile",
+    "name": "ITOP",
     "slug": "itop-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -16,7 +16,7 @@
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "package": "com.afrotech242.itopmobile"
+      "package": "com.mayscorp.itop"
     },
     "web": {
       "favicon": "./assets/favicon.png"
