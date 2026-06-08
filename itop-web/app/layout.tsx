@@ -6,10 +6,16 @@ export const metadata: Metadata = {
   description:
     'Convertissez vos images PNG, JPG, GIF, TIFF, PSD, SVG, WEBP, HEIC en PDF gratuitement. Rapide, privé, sans inscription.',
   keywords: ['convertir image PDF', 'PNG en PDF', 'HEIC en PDF', 'gratuit', 'ITOP'],
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
   openGraph: {
     title: 'ITOP — Convertisseur d\'images en PDF',
     description: '100% gratuit. Aucune inscription. Vos fichiers restent privés.',
     type: 'website',
+    images: [{ url: '/logo.png', width: 512, height: 512, alt: 'ITOP Logo' }],
   },
 }
 

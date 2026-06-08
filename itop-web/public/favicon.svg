@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Document -->
+  <rect x="28" y="18" width="38" height="48" rx="4" fill="white" stroke="#636769" stroke-width="3"/>
+  <path d="M52 18 L66 32" fill="none" stroke="#636769" stroke-width="3"/>
+  <path d="M52 18 L52 32 L66 32" fill="#f0f0f0" stroke="#636769" stroke-width="2"/>
+  <!-- Arrow ring -->
+  <path d="M20 55 Q18 42 30 34" fill="none" stroke="#cc3234" stroke-width="4" stroke-linecap="round"/>
+  <path d="M70 45 Q82 58 70 66" fill="none" stroke="#cc3234" stroke-width="4" stroke-linecap="round"/>
+  <!-- Arrow heads -->
+  <polygon points="27,30 35,36 22,38" fill="#cc3234"/>
+  <polygon points="73,70 65,64 78,62" fill="#cc3234"/>
+</svg>

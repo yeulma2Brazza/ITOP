@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Footer() {
   return (
@@ -9,12 +10,16 @@ export default function Footer() {
 
           {/* Logo + description */}
           <div className="text-center md:text-left">
-            <div className="flex items-center gap-3 justify-center md:justify-start mb-3">
-              <div className="w-9 h-9 rounded-xl bg-[#cc3234] flex items-center justify-center">
-                <span className="text-white font-black text-xs tracking-widest">IT</span>
-              </div>
+            <Link href="/" className="flex items-center gap-3 justify-center md:justify-start mb-3 hover:opacity-80 transition-opacity">
+              <Image
+                src="/logo.png"
+                alt="ITOP"
+                width={36}
+                height={36}
+                className="rounded-xl"
+              />
               <span className="font-black text-xl tracking-widest">ITOP</span>
-            </div>
+            </Link>
             <p className="text-gray-400 text-sm max-w-xs">
               Convertisseur d&apos;images en PDF gratuit. Simple, rapide, privé.
             </p>

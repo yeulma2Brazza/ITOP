@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Header() {
   return (
@@ -6,15 +7,20 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
 
         {/* Logo */}
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-[#cc3234] flex items-center justify-center shadow-md shadow-red-200">
-            <span className="text-white font-black text-xs tracking-widest">IT</span>
-          </div>
+        <Link href="/" className="flex items-center gap-2 hover:opacity-85 transition-opacity">
+          <Image
+            src="/logo.png"
+            alt="ITOP"
+            width={38}
+            height={38}
+            className="rounded-xl"
+            priority
+          />
           <div>
             <span className="font-black text-lg text-[#343a40] tracking-widest">ITOP</span>
             <span className="text-xs text-[#636769] ml-2 hidden sm:inline">PDF Converter</span>
           </div>
-        </div>
+        </Link>
 
         {/* Navigation */}
         <nav className="flex items-center gap-4">
