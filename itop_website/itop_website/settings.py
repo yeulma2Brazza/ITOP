@@ -9,6 +9,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-vqb2z^hmg3k-0y!g47(f9
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
+if 'healthcheck.railway.app' not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append('healthcheck.railway.app')
 
 # ─── APPLICATIONS ──────────────────────────────────────────────────────────
 INSTALLED_APPS = [
