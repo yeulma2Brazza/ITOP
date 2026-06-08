@@ -4,6 +4,7 @@
   "main": "index.js",
   "dependencies": {
     "@expo/ngrok": "^4.1.0",
+    "@react-native-async-storage/async-storage": "^3.1.1",
     "expo": "~55.0.0",
     "expo-document-picker": "~55.0.13",
     "expo-file-system": "~55.0.22",
