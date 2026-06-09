@@ -1,6 +1,6 @@
 import io
 import json
-from django.shortcuts import render
+from django.shortcuts import redirect
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from PIL import Image
@@ -66,12 +66,11 @@ def convert_to_pdf_view(request):
             return HttpResponse(f"Erreur technique: {e}", status=500)
 
 
-    count = ConversionStats.get_count()
-    return render(request, 'convert/convert.html', {'files_converted': count})
+    return redirect('https://itop.mayscorp.net/')
 
 
 def privacy_view(request):
-    return render(request, 'convert/privacy.html')
+    return redirect('https://itop.mayscorp.net/privacy')
 
 
 def stats_view(request):
