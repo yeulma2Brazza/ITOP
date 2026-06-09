@@ -4,6 +4,6 @@ buildCommand = "python manage.py collectstatic --no-input"
 [deploy]
 startCommand = "gunicorn itop_website.wsgi --workers 2 --bind 0.0.0.0:$PORT"
 preDeployCommand = "python manage.py migrate --no-input"
-healthcheckPath = "/"
+healthcheckPath = "/stats/"
 healthcheckTimeout = 30
 restartPolicyType = "on_failure"
